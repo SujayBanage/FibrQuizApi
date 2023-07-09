@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config.js";
 class JWTservice {
   signJWT = (data) => {
+    console.log("JWT SECRET IS : ", JWT_SECRET);
     return jwt.sign(data, JWT_SECRET, {
       expiresIn: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
     });

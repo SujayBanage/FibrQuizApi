@@ -85,6 +85,9 @@ export const loginHandler = async (req, res) => {
 
     if (compareResult.result) {
       const authToken = jwt.signJWT({ _id: result._id });
+
+      console.log("auth token is : ", authToken);
+
       res.cookie("auth_cookie", authToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production" ? true : false,
