@@ -196,12 +196,10 @@ export const shareQuiz = async (req, res) => {
         message: "quiz not found!",
       });
     }
+    const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
     return res.status(200).json({
       status: 200,
-      url:
-        process.env.NODE_ENV === "production"
-          ? "https"
-          : "http" + "://" + req.get("host") + "/api/quiz/" + id,
+      url: protocol + "://" + req.get("host") + "/api/quiz/" + id,
     });
   } catch (err) {
     return res.status(err.statusCode || 500).json({
