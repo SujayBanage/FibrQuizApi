@@ -198,7 +198,10 @@ export const shareQuiz = async (req, res) => {
     }
     return res.status(200).json({
       status: 200,
-      url: req.protocol + "://" + req.get("host") + "/api/quiz/" + id,
+      url:
+        process.env.NODE_ENV === "production"
+          ? "https"
+          : "http" + "://" + req.get("host") + "/api/quiz/" + id,
     });
   } catch (err) {
     return res.status(err.statusCode || 500).json({
